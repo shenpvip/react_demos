@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>生命周期案例</title>
+</head>
+<body>
+    <div id="reactContainer"></div>
+    <script src="./common/react.js"></script>
+    <script src="./common/react-dom.js"></script>  
+    <script src="https://cdn.bootcss.com/babel-core/5.8.38/browser.js"></script>
+    <script type="text/babel">
+        var Hello = React.createClass({
+            getInitialState:function(){
+                return{
+                    opacity:1
+                };
+            },
+            componentDidMount:function(){
+                setInterval(()=>{
+                    var opa = this.state.opacity;
+                    opa -= .05;
+                    if(opa < 0.1){
+                        opa = 1;
+                    }
+                    this.setState({
+                        opacity : opa
+                    })
+                },100)
+            },
+            render:function(){
+                return (
+                    <div style={{opacity:this.state.opacity}}>
+                        <h1>Hello {this.props.name}</h1>
+                    </div>
+                )
+            }
+        })
+        ReactDOM.render(<Hello name='web'/>,document.getElementById("reactContainer"));
+    </script>
+</body>
+</html>

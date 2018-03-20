@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>不可控组件</title>
+</head>
+<body>
+    <div id="reactContainer"></div>
+    <script src="./common/react.js"></script>
+    <script src="./common/react-dom.js"></script>  
+    <script src="https://cdn.bootcss.com/babel-core/5.8.38/browser.js"></script>
+    <script type="text/babel">
+        var MyForm = React.createClass({
+            getInitialState:function(){
+                return{
+                    val:'sp'
+                }
+            },
+            handlerClick:function(event){
+                // console.log(event.target.value);
+                var txt = ReactDOM.findDOMNode(this.refs.inputTxt).value;
+                console.log(txt);
+            },
+            render:function(){
+                return (
+                    <input type="text" defaultValue="web" onChange={this.handlerClick} ref="inputTxt"/>
+                )
+            }
+        });
+        ReactDOM.render(<MyForm/>,document.getElementById("reactContainer"));
+    </script>
+</body>
+</html>
